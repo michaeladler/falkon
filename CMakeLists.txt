@@ -4,6 +4,12 @@ cmake_minimum_required(VERSION 3.1)
 # Project name and version
 project(Falkon VERSION 3.1.99)
 
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+endif(CCACHE_FOUND)
+
 # Find ECM, with nice error handling in case of failure
 include(FeatureSummary)
 find_package(ECM 5.27.0 CONFIG)

@@ -39,3 +39,7 @@ tests/autotests/autotests
 *.stash
 bin/profiles
 CMakeLists.txt.user*
+.clangd
+.envrc
+Session.vim
+compile_commands.json
