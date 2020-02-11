@@ -117,6 +117,7 @@ MainApplication::MainApplication(int &argc, char** argv)
 {
     setAttribute(Qt::AA_UseHighDpiPixmaps);
     setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
+    setAttribute(Qt::AA_UseSoftwareOpenGL);
 
     setApplicationName(QStringLiteral("falkon"));
     setOrganizationDomain(QStringLiteral("org.kde"));
