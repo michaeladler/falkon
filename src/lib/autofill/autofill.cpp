@@ -33,6 +33,7 @@
 #include <QWebEngineProfile>
 #include <QWebEngineScriptCollection>
 #include <QUrlQuery>
+#include <iostream>
 
 AutoFill::AutoFill(QObject* parent)
     : QObject(parent)
@@ -234,7 +235,11 @@ QStringList AutoFill::completePage(WebPage *page, const QUrl &frameUrl)
     if (!entries.isEmpty()) {
         PasswordEntry entry = entries.at(0);
         updateLastUsed(entry);
-        page->runJavaScript(Scripts::completeFormData(entry.data), WebPage::SafeJsWorld);
+        if (!entry.data.isEmpty()){
+          page->runJavaScript(Scripts::completeFormData(entry.data), WebPage::SafeJsWorld);
+        } else {
+          page->runJavaScript(Scripts::fillInLoginData(entry.username, entry.password), WebPage::SafeJsWorld);
+        }
     }
 
     usernames.reserve(entries.size());
